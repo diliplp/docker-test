@@ -5,7 +5,7 @@ steps:
       [
         "build",
         "-t",
-        "asia-docker.pkg.dev/enduring-plate-391404/docker-test-gcp",
+        "asia-docker.pkg.dev/enduring-plate-391404/docker-test-gcp:latest",
         ".",
       ]
 
@@ -14,7 +14,7 @@ steps:
     args:
       [
         "push",
-        "asia-docker.pkg.dev/enduring-plate-391404/docker-test-gcp",
+        "asia-docker.pkg.dev/enduring-plate-391404/docker-test-gcp:latest",
       ]
 
   # Deploy the image to Cloud Run
@@ -24,7 +24,7 @@ steps:
       - "deploy"
       - "flask-server"
       - "--image"
-      - "asia-docker.pkg.dev/enduring-plate-391404/docker-test-gcp"
+      - "asia-docker.pkg.dev/enduring-plate-391404/docker-test-gcp:latest"
       - "--region"
       - "asia-south1-a"
       - "--platform"
