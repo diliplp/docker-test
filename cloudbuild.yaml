@@ -22,7 +22,7 @@ steps:
     args:
       - "run"
       - "deploy"
-      - "flask-server"
+      - "docker-flask-server"
       - "--image"
       - "asia-docker.pkg.dev/enduring-plate-391404/docker-test-gcp/docker-test-gcp:latest"
       - "--region"
