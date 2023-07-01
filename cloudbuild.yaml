@@ -1,0 +1,36 @@
+steps:
+  # Build the Docker image
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "asia-docker.pkg.dev/enduring-plate-391404/docker-test-gcp",
+        ".",
+      ]
+
+  # Push the Docker image to Artifact Registry
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "asia-docker.pkg.dev/enduring-plate-391404/docker-test-gcp",
+      ]
+
+  # Deploy the image to Cloud Run
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "run"
+      - "deploy"
+      - "flask-server"
+      - "--image"
+      - "asia-docker.pkg.dev/enduring-plate-391404/docker-test-gcp"
+      - "--region"
+      - "asia-south1-a"
+      - "--platform"
+      - "managed"
+      - "--allow-unauthenticated"
+      - "--port"
+      - "5000"
+options:
+  logging: CLOUD_LOGGING_ONLY
